@@ -9,6 +9,31 @@ namespace mvc2025.Controllers
 {
     public class CollegeController : Controller
     {
+
+        private static readonly List<student> studList = new List<student>
+        {
+            new student{
+               student_no = "1",
+                name="River",
+                course="BSCS",
+                address="taytay"
+            },
+
+                 new student{
+               student_no = "2",
+                name="River2",
+                course="BSCS2",
+                address="taytay2"
+            },
+
+                      new student{
+               student_no = "3",
+                name="River3",
+                course="BSCS3",
+                address="taytay3"
+            }
+
+        };
         // GET: College
         public ActionResult Index()
         {
@@ -23,7 +48,84 @@ namespace mvc2025.Controllers
                 address="taytay"
 
             }); ;
-            return View(List);
+
+            List.Add(new student
+            {
+
+                student_no = "2",
+                name = "River2",
+                course = "BSCS2",
+                address = "taytay2"
+
+            }); ;
+            return View(studList);
+        }
+
+        [HttpGet]
+        public ActionResult addStudent() {
+            student studentz = new student();
+            return View(studentz);
+        }
+
+        public ActionResult editStudent(string student_no)
+        {
+            if (!string.IsNullOrEmpty(student_no))// Ensure student_no is not null or empty
+            {
+                student selectedStudent= studList.Where(x => x.student_no == student_no).FirstOrDefault();
+
+                return View(selectedStudent);
+            }
+            return RedirectToAction("Index");
+
+        }
+
+
+      
+        [HttpPost]
+
+        public ActionResult editStudent(student model)
+        {
+            if (!string.IsNullOrEmpty(model.student_no))// Ensure student_no is not null or empty
+            {
+                studList.RemoveAll(x => x.student_no == model.student_no);
+                studList.Add(new student
+                {
+                    student_no = model.student_no,
+                    name = model.name,
+                    course = model.course,
+                    address = model.address
+                });
+
+            }
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult addStudent(student model)
+        {
+            if (!string.IsNullOrEmpty(model.student_no)) // Ensure student_no is not null or empty
+            {
+                studList.Add(new student
+                {
+                    student_no = model.student_no,
+                    name = model.name,
+                    course = model.course,
+                    address = model.address
+                });
+            }
+
+          
+            return RedirectToAction("Index");
+        }
+    
+        public ActionResult deleteStudent(String student_no)
+        {
+            if (!string.IsNullOrEmpty(student_no))// Ensure student_no is not null or empty
+            {
+              studList.RemoveAll(x => x.student_no == student_no);
+            }
+
+            // Redirect to the Index action after adding the student
+            return RedirectToAction("Index");
         }
 
         // GET: College/Details/5
