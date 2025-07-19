@@ -1,0 +1,48 @@
+﻿@model IEnumerable<mvc2025.Models.College.student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div class="River" >
+
+    <p>Hello World</p>
+
+</div>
+
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+
+            <td>Student No </td>
+            <td>Name</td>
+            <td>Course </td>
+            <td>Address </td>
+
+        </tr>
+
+
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model) { 
+        
+        <tr>
+
+            <td>@item.student_no</td>
+            <td>@item.name</td>
+            <td>@item.course</td>
+            <td>@item.address</td>
+
+        </tr>
+        
+        }
+
+    </tbody>
+</table>
