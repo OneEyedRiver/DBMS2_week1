@@ -18,6 +18,26 @@ namespace mvc2025.Models
 
             public string address { get; set; }
 
+            public List<Subjects> subjects { get; set;  }
+
+            
+
+
+
+        }
+
+        public class Subjects
+        {
+
+
+            public string subjectCode { get; set; }
+
+            public string subjectName { get; set; }
+
+            public string day { get; set; }
+
+            public string time { get; set; }
+
 
 
         }

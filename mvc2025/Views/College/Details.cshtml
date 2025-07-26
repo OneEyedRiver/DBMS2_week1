@@ -1,7 +1,41 @@
-﻿
+﻿@model mvc2025.Models.College.student
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <td>Subject Code</td>
+            <td>Subject name</td>
+            <td>Day</td>
+            <td>Time</td>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach(var item in Model.subjects) {
+        <tr>
+
+            <td>@item.subjectCode</td>
+            <td>@item.subjectName</td>
+            <td>@item.day</td>
+            <td>@item.time</td>
+
+
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+<br />
+
+
+@Html.ActionLink("Back", "Index")

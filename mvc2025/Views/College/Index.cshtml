@@ -36,8 +36,8 @@
         
         <tr>
 
-            <td>@item.student_no</td>
-            <td>@item.name</td>
+            <td>@Html.ActionLink(item.student_no, "Details", new { student_no = item.student_no })</td>
+            <td>@Html.ActionLink(item.name, "Details", new { student_no = item.student_no })</td>
             <td>@item.course</td>
             <td>@item.address</td>
             <td><h4>@Html.ActionLink("Delete", "deleteStudent", new { student_no = item.student_no }) | @Html.ActionLink("Edit", "editStudent", new { student_no = item.student_no })</h4></td>

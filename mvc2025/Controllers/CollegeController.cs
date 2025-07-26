@@ -16,7 +16,39 @@ namespace mvc2025.Controllers
                student_no = "1",
                 name="River",
                 course="BSCS",
-                address="taytay"
+                address="taytay",
+                
+                subjects = new List<Subjects>
+                {
+
+                    new Subjects{
+                    subjectCode="1",
+                    subjectName="Intro to prog",
+                    day="mon",
+                    time="5:00"
+                    
+                    
+                    },
+                          new Subjects{
+                    subjectCode="2",
+                    subjectName="Intro to fight",
+                    day="tues",
+                    time="2:00"
+
+
+                    },
+                                new Subjects{
+                    subjectCode="3",
+                    subjectName="Intro to sleep",
+                    day="wed",
+                    time="7:00"
+
+
+                    }
+
+
+
+                }
             },
 
                  new student{
@@ -128,10 +160,22 @@ namespace mvc2025.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
+       
         // GET: College/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string student_no)
         {
-            return View();
+            if (!string.IsNullOrEmpty(student_no))
+            {
+
+                student studeSelect = studList.Where(x => x.student_no == student_no).FirstOrDefault();
+                return View(studeSelect);
+
+
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: College/Create
